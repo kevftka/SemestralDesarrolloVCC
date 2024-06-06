@@ -1,0 +1,26 @@
+@import '../global'
+
+.video-wrapper
+    display: flex
+    justify-content: center
+
+
+.separator
+    height: 4px
+    border-bottom: 4px solid $gray-300
+    cursor: ns-resize
+    transition: border-color 0.2s
+
+    &:hover
+        border-color: $gray-800
+
+.download-form
+    & > *
+        margin: 0 10px
+
+    input
+        max-width: 300px
+
+#sound-wave
+    max-height: 30px
+    overflow: hidden
