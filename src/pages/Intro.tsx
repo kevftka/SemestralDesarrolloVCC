@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom"
 
 import { FileInput, pushToast } from "../components/form"
 import appStates from "../utils/states"
-import { parseVtt, parseVtt } from "../utils/caption"
+import { parseSrt, export2srt } from "../utils/caption"
 import { getQueryParams } from "../utils/browser"
 
 import "./intro.sass"
@@ -49,7 +49,7 @@ export default class Intro extends React.Component<{}, State> {
       response = await fetch(url),
       data = await response.text()
 
-    appStates.subtitles.setData(parseVtt(data))
+    appStates.subtitles.setData(parseSrt  (data))
 
     this.setState({
       subtitleUrl: url,
