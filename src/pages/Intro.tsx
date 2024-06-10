@@ -90,6 +90,7 @@ export default class Intro extends React.Component<{}, State> {
       return <Navigate to="/studio" />
 
     return (<>
+      <span><img src="\src\assets\CCgen.png" alt="" /></span>
       <h2 className="page-title"> Intro </h2>
       <div className="wrapper">
 
