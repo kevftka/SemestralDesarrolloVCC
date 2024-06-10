@@ -222,7 +222,7 @@ export default class Studio extends React.Component<{}, {
   onVideoError(_: SyntheticEvent) {
     pushToast({
       kind: 'danger',
-      message: "error happend while loading video",
+      message: "error sucedido cuando intento cargar el video",
       duration: 5000
     })
   }
