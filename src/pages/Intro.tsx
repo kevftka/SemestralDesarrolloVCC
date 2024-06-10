@@ -79,7 +79,7 @@ export default class Intro extends React.Component<{}, State> {
     else
       pushToast({
         kind: 'danger',
-        message: "select a video first",
+        message: "seleccione un video",
         duration: 5000
       })
   }
@@ -94,37 +94,37 @@ export default class Intro extends React.Component<{}, State> {
       <div className="wrapper">
 
         <div className="alert alert-secondary">
-          consider
-          <Link to="/help"> help page </Link>
-          for learning app features & shortcuts
+          considere usar 
+          <Link to="/help"> la pagina de ayuda </Link>
+          para aprender funciones y atajos de la aplicación
         </div>
 
         <div>
-          <span> video file: </span>
+          <span> archivo de video </span>
           <FileInput
             onChange={f => this.handler(f, 'video')}
             filename={this.state.videoFname} />
         </div>
 
         <div className="alert alert-info">
-          you can check supported video formats
-          <a href="https://en.wikipedia.org/wiki/HTML5_video" target="blank"> here </a>
+        puedes comprobar los formatos de vídeo compatibles
+          <a href="https://es.wikipedia.org/wiki/HTML5_video" target="blank"> aqui </a>
         </div>
 
         <div className="mt-3">
-          <span> subtitle file: </span>
+          <span> archivo de subtitulos: </span>
           <FileInput
             onChange={f => this.handler(f, 'subtitle')}
             filename={this.state.subtitleFname}
           />
         </div>
         <div className="alert alert-warning">
-          if you don't select a subtitle file, we make new one
+        Si no selecciona un archivo de subtítulos, creamos uno nuevo.
         </div>
 
         <div className="center">
           <button className="btn btn-success font-weight-bold" onClick={this.checkValidation}>
-            go to studio!
+            a hacer subtitulos
           </button>
         </div>
 
@@ -135,7 +135,7 @@ export default class Intro extends React.Component<{}, State> {
         <a href="" target="blank"
           className="d-flex align-items-center">
           <span className="fab fa-github github-logo"></span>
-          <span className="pb-1 mx-2"> project link on github </span>
+          <span className="pb-1 mx-2"> enlace del proyecto en github </span>
         </a>
       </footer>
       

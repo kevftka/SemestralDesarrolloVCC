@@ -268,7 +268,7 @@ export default class Studio extends React.Component<{}, {
       newCap = {
         start: t,
         end: t + 1,
-        content: "New Caption",
+        content: "nuevo sub",
         hash: uuid(),
       },
       caps = this.state.captions.concat(newCap)
@@ -391,7 +391,7 @@ export default class Studio extends React.Component<{}, {
       selected_ci = this.state.selected_caption_i
 
     return (<>
-      <h2 className="page-title">Studio</h2>
+      <h2 className="page-title">Editor</h2>
       <div className="wrapper">
         <div className="video-wrapper">
           <VideoPlayer
@@ -428,30 +428,30 @@ export default class Studio extends React.Component<{}, {
         <div className="d-flex justify-content-center action-button-group my-2">
           <CircleBtn
           iconClassName='fas fa-broom'
-          text='add color'
+          text='añadir color'
           onClick={this.changeCaptionColor}
             />
           <CircleBtn
           iconClassName='fas fa-font'
-          text='add font'
+          text='añadir fuente '
           onClick={this.changeCaptionFont}
             />
 
           <CircleBtn
             iconClassName="fas fa-plus"
-            text="add caption"
+            text="añadir subtitulo "
             onClick={this.addCaptionUIHandler}
           />
           <CircleBtn
             iconClassName="fas fa-undo"
             disabled={this.state.historyCursor === -1}
-            text={"undo " + (this.state.historyCursor + 1)}
+            text={"deshacer " + (this.state.historyCursor + 1)}
             onClick={() => this.undoRedo(true)}
           />
 
           <CircleBtn
             iconClassName="fas fa-redo"
-            text={"redo " + ((this.state.history.length - 1) - this.state.historyCursor)}
+            text={"rehacer " + ((this.state.history.length - 1) - this.state.historyCursor)}
             disabled={this.state.historyCursor >= this.state.history.length - 1}
             onClick={() => this.undoRedo(false)}
           />
@@ -459,27 +459,27 @@ export default class Studio extends React.Component<{}, {
           <CircleBtn
             iconClassName="fas fa-times"
             disabled={this.state.selected_caption_i === null}
-            text="unselect"
+            text="deseleccionar"
             onClick={() => this.setState({ selected_caption_i: null })}
           />
 
           <CircleBtn
             iconClassName="fas fa-trash"
             disabled={this.state.selected_caption_i === null}
-            text="delete"
+            text="borrar"
             onClick={this.deleteCaptionUIHandler}
           />
 
           <CircleBtn
             iconClassName="fas fa-chevron-left"
             disabled={caps.length === 0}
-            text="last start"
+            text="ultimo comienzo"
             onClick={this.goToLastStart}
           />
           <CircleBtn
             iconClassName="fas fa-chevron-right"
             disabled={caps.length === 0}
-            text="next end "
+            text="siguiente final "
             onClick={this.goToNextEnd}
           />
 
@@ -510,11 +510,11 @@ export default class Studio extends React.Component<{}, {
       </div>
 
       <div className="d-flex justify-content-center my-2 download-form">
-        <input className="form-control" placeholder="file-name.vtt" 
+        <input className="form-control" placeholder="file-name.srt" 
           value={this.state.subFileName} 
           onChange={ e => this.setState({subFileName: e.currentTarget.value})}  />
         <button className="btn btn-danger" onClick={this.saveFile}>
-          <strong> save as a vtt file <span className="fas fa-file"></span>  </strong>
+          <strong> guardar como srt <span className="fas fa-file"></span>  </strong>
         </button>
       </div>
     </>)
