@@ -7,6 +7,7 @@ import { parseSrt, export2srt } from "../utils/caption"
 import { getQueryParams } from "../utils/browser"
 
 import "./intro.sass"
+import appbanner from '../assets/CCgen.png'
 
 type State = {
   subtitleUrl: string
@@ -89,8 +90,8 @@ export default class Intro extends React.Component<{}, State> {
       return <Navigate to="/studio" />
 
     return (<>
-      <img src="\src\assets\CCgen.png" alt="" />
-      <h2 className="page-title"> Intro </h2>
+    <header className='header-title'><img className='content-header' src={appbanner} alt="" /></header>
+      <h2 className="page-title"></h2>
       <div className="wrapper">
 
         <div className="alert alert-secondary">
