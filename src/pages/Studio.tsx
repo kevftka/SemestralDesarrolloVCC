@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid"
 
 import appStates from "../utils/states"
 import { simpleSort } from "../utils/funcs"
-import { Caption, export2vtt, captionsCompare } from "../utils/caption"
+import { Caption, export2srt, captionsCompare } from "../utils/caption"
 import { SHOOT_TIME_MINOR, SHOOT_TIME_MAJOR, MAX_HISTORY, DEFAULT_SCALE } from "../utils/consts"
 
 import { VideoPlayer, Timeline, SubtitleTimeline, CaptionEditor, CaptionView } from "../components/video"
@@ -58,7 +58,7 @@ export default class Studio extends React.Component<{}, {
       currentTime: 0,
       totalTime: 0,
 
-      subFileName: "subtitle.vtt",
+      subFileName: "subtitle.srt",
 
       captions: [],
       selected_caption_i: null,
@@ -371,7 +371,7 @@ export default class Studio extends React.Component<{}, {
 
   saveFile() {
     this.state.captions.sort(captionsCompare)
-    fileDownload(export2vtt(this.state.captions), this.state.subFileName)
+    fileDownload(export2srt(this.state.captions), this.state.subFileName)
   }
 
   // handleSeparatorStop(_: DraggableEvent, _: DraggableData) {
