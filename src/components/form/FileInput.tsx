@@ -43,7 +43,7 @@ class FileInput extends React.Component<{
 					onChange={this.changeHandler} />
 
 				<button
-					className="rounded font-weight-bold btn btn-info w-100 virtual-file-input"
+					className="rounded font-weight-bold btn btn-info w-100"
 					onClick={_ => this.redirectToInput()}>
 					<span> {placeHolder} </span>
 				</button>
