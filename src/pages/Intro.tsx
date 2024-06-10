@@ -3,12 +3,14 @@ import { Link, Navigate } from "react-router-dom"
 
 import { FileInput, pushToast } from "../components/form"
 import appStates from "../utils/states"
+import {parseVtt } from "../utils/caption"
 import { parseSrt, export2srt } from "../utils/caption"
 import { getQueryParams } from "../utils/browser"
 
 import "./intro.sass"
 
-type State = {
+type State
+ = {
   subtitleUrl: string
   videoUrl: string
   subtitleFname: string
@@ -49,7 +51,6 @@ export default class Intro extends React.Component<{}, State> {
       response = await fetch(url),
       data = await response.text()
 
-    appStates.subtitles.setData(parseSrt  (data))
 
     this.setState({
       subtitleUrl: url,
@@ -89,6 +90,7 @@ export default class Intro extends React.Component<{}, State> {
       return <Navigate to="/studio" />
 
     return (<>
+      <span><img src="\src\assets\CCgen.png" alt="" /></span>
       <h2 className="page-title"> Intro </h2>
       <div className="wrapper">
 
@@ -128,6 +130,15 @@ export default class Intro extends React.Component<{}, State> {
         </div>
 
       </div>
+ 
+    <footer className="p-2 w-100 d-flex justify-content-center">
+        <a href="" target="blank"
+        className="d-flex align-items-center">
+         <span className="fab fa-github github-logo"></span>
+         <span className="pb-1 mx-2"> project link on github </span>
+        </a>
+      </footer> 
+     
 
 
       <footer className="p-2 w-100 d-flex justify-content-center">

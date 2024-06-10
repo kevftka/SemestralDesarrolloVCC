@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid"
 
 import appStates from "../utils/states"
 import { simpleSort } from "../utils/funcs"
-import { Caption, export2srt, captionsCompare } from "../utils/caption"
+import { Caption, export2vtt, captionsCompare } from "../utils/caption"
 import { SHOOT_TIME_MINOR, SHOOT_TIME_MAJOR, MAX_HISTORY, DEFAULT_SCALE } from "../utils/consts"
 
 import { VideoPlayer, Timeline, SubtitleTimeline, CaptionEditor, CaptionView } from "../components/video"
@@ -51,14 +51,14 @@ export default class Studio extends React.Component<{}, {
     super(props)
 
     this.state = {
-      videoUrl: appStates.videoUrl.getData() || "https://as8.asset.aparat.com/aparat-video/c0abed25946d273ab38fbd2274df6c6d6957437-360p.mp4?wmsAuthSign=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjY3NTZjNjJiZjYwMDIyNjUzMjc5OTM0ZWYxMmY5OGM5IiwiZXhwIjoxNzA3ODYxNTg3LCJpc3MiOiJTYWJhIElkZWEgR1NJRyJ9.QatHrg3GFqNI4KOeucQrY61Z-lEdrsKaLxlSTDVT2cE",
-      videoHeight: 400,
+      videoUrl: appStates.videoUrl.getData() /*"https://as8.asset.aparat.com/aparat-video/c0abed25946d273ab38fbd2274df6c6d6957437-360p.mp4?wmsAuthSign=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6IjY3NTZjNjJiZjYwMDIyNjUzMjc5OTM0ZWYxMmY5OGM5IiwiZXhwIjoxNzA3ODYxNTg3LCJpc3MiOiJTYWJhIElkZWEgR1NJRyJ9.QatHrg3GFqNI4KOeucQrY61Z-lEdrsKaLxlSTDVT2cE"*/,
+     videoHeight: 400,
       acc: 0,
 
       currentTime: 0,
       totalTime: 0,
 
-      subFileName: "subtitle.srt",
+      subFileName: "subtitle.vtt",
 
       captions: [],
       selected_caption_i: null,
@@ -234,6 +234,12 @@ export default class Studio extends React.Component<{}, {
 
   // ----------------- functionalities --------------------
   // -- captions changes
+  changeCaptionFont(){
+    
+  }
+
+  changeCaptionColor(){}
+
 
   changeCaptionObject(index: number, newcap: Caption): Caption[] {
     return copyReplace(
@@ -365,7 +371,7 @@ export default class Studio extends React.Component<{}, {
 
   saveFile() {
     this.state.captions.sort(captionsCompare)
-    fileDownload(export2srt(this.state.captions), this.state.subFileName)
+    fileDownload(export2vtt(this.state.captions), this.state.subFileName)
   }
 
   // handleSeparatorStop(_: DraggableEvent, _: DraggableData) {
@@ -387,7 +393,6 @@ export default class Studio extends React.Component<{}, {
     return (<>
       <h2 className="page-title">Studio</h2>
       <div className="wrapper">
-
         <div className="video-wrapper">
           <VideoPlayer
             ref={this.VideoPlayerRef}
@@ -421,6 +426,17 @@ export default class Studio extends React.Component<{}, {
         />
 
         <div className="d-flex justify-content-center action-button-group my-2">
+          <CircleBtn
+          iconClassName='fas fa-broom'
+          text='add color'
+          onClick={this.changeCaptionColor}
+            />
+          <CircleBtn
+          iconClassName='fas fa-font'
+          text='add font'
+          onClick={this.changeCaptionFont}
+            />
+
           <CircleBtn
             iconClassName="fas fa-plus"
             text="add caption"
@@ -494,11 +510,11 @@ export default class Studio extends React.Component<{}, {
       </div>
 
       <div className="d-flex justify-content-center my-2 download-form">
-        <input className="form-control" placeholder="file-name.srt" 
+        <input className="form-control" placeholder="file-name.vtt" 
           value={this.state.subFileName} 
           onChange={ e => this.setState({subFileName: e.currentTarget.value})}  />
         <button className="btn btn-danger" onClick={this.saveFile}>
-          <strong> save as a file <span className="fas fa-file"></span>  </strong>
+          <strong> save as a vtt file <span className="fas fa-file"></span>  </strong>
         </button>
       </div>
     </>)

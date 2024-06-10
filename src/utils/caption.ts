@@ -18,14 +18,14 @@ export function areSameCaptions(a: Caption, b: Caption): boolean {
   return (a.start === b.start) && (a.end === b.end) && (a.content === b.content)
 }
 
-// save as .srt format
-export function export2srt(caps: Caption[]): string {
+// save as .vtt format
+export function export2vtt(caps: Caption[]): string {
   return caps.map((c, i) =>
     `${i + 1}\n${second2timestamp(c.start, "complete")} --> ${second2timestamp(c.end, "complete")}\n${c.content}`)
     .join('\n\n')
 }
 
-export function parseSrt(content: string): Caption[] {
+export function parseVtt(content: string): Caption[] {
   const matches = Array.from(content.matchAll(
     /\d+\n([\d,:]{12}) --> ([\d,:]{12})\n(.+?)(?=\d+\n[\d,:]{12}|$)/gs))
 
