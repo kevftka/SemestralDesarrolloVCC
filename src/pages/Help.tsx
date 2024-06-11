@@ -7,6 +7,7 @@ import StickTimeImg from '../assets/ajustartiempo.png'
 import TextAlignImg from '../assets/alineartexto.png'
 import addNewCap2Last from '../assets/moversubtitulo.png'
 import resizeVideo from '../assets/cambiodetamaño.png'
+
 import NavsBar from '../components/NavsBar'
 
 type State = {
@@ -128,7 +129,7 @@ export default class Help extends React.Component<{}, State> {
     return (<>
       <NavsBar />
       <h2 className="page-title">Preguntas Frecuentes</h2>
-      <div className="wrapper">
+           <div className="wrapper">
 
         <h3> <a href="#features">cualidades del Editor</a> </h3>
         <ul id="features">
