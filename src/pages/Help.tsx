@@ -1,12 +1,12 @@
 import React from 'react'
 import './help.sass'
 
-import captionDrag from '../assets/captionDrag.gif'
-import TCtrolImg from '../assets/TimeControll.jpg'
-import StickTimeImg from '../assets/stickTime.png'
-import TextAlignImg from '../assets/textAlign.png'
-import addNewCap2Last from '../assets/addNewCaptionToEndOfLastOne.jpg'
-import resizeVideo from '../assets/resizeVideo.png'
+import captionDrag from '../assets/hacersub.png'
+import TCtrolImg from '../assets/controltiempo.png'
+import StickTimeImg from '../assets/ajustartiempo.png'
+import TextAlignImg from '../assets/alineartexto.png'
+import addNewCap2Last from '../assets/moversubtitulo.png'
+import resizeVideo from '../assets/cambiodetamaño.png'
 
 type State = {
   shortcuts: {
