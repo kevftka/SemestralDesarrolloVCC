@@ -23,112 +23,112 @@ export default class Help extends React.Component<{}, State> {
     shortcuts: [
       {
         keys: ['ctrl', 'space'],
-        clue: 'play/pause video player',
+        clue: 'reproducir/pausar reproductor de video',
       },
       {
         keys: ['ctrl', 'right/left'],
-        clue: 'go forward/backward in timeline [small step]',
+        clue: 'avanzar/retroceder en la línea de tiempo [corto]',
       },
       {
         keys: ['ctrl', 'shift', 'right/left'],
-        clue: 'go forward/backward in timeline [big step]',
+        clue: 'avanzar/retroceder en la línea de tiempo [largo]',
       },
       {
         keys: ['ctrl', '+/-'],
-        clue: 'zoom in/out in timeline',
+        clue: 'acercar/alejar  la línea de tiempo',
       },
       {
         keys: ['ctrl', 'shift', '+/-'],
-        clue: 'zoom in/out web page',
+        clue: 'acercar/alejar la página web',
       },
       {
         keys: ['ctrl', '6/7'],
-        clue: 'go to [start of last caption]/[end of next caption]',
+        clue: 'ir a [inicio del último título]/[fin del siguiente título]',
       },
       {
         keys: ['ctrl', 'down'],
-        clue: 'select current caption',
+        clue: 'seleccione el subtítulo actual',
       },
       {
         keys: ['escape'],
-        clue: 'unselect selected caption',
+        clue: 'deseleccionar el subtítulo seleccionado',
       },
 
       {
         keys: ['tab', 'left/right'],
-        clue: 'shoot end of selected caption forward/backward',
+        clue: 'mirar el final del subtítulo seleccionado hacia adelante/atrás',
       },
       {
         keys: ['alt', 'left/right'],
-        clue: 'shoot start of selected caption forward/backward',
+        clue: 'mirar el comienzo del subtítulo seleccionado hacia adelante/atrás',
       },
       {
         keys: ['ctrl', '8/9'],
-        clue: 'shoot start/end of selected caption to the current time',
+        clue: 'mirar el inicio/fin del subtitulo selecionado a la hora actual',
       },
       {
         keys: ['ctrl', 'enter'],
-        clue: 'create new caption',
+        clue: 'crear nuevo subtitulo',
       },
       {
         keys: ['enter'],
-        clue: 'updates caption value, it works automatically when you switch between captions too',
+        clue: 'actualiza el valor de los subtítulos, también funciona automáticamente cuando cambias entre subtítulos',
       },
       {
         keys: ['ctrl', 'delete'],
-        clue: 'delete selected caption',
+        clue: 'borrar subtitulo selecionado',
       },
       {
         keys: ['ctrl', '0'],
-        clue: 'toggle text direction in caption editor input [left to right]/[right to left]',
+        clue: 'alternar la dirección del texto en la entrada del editor de subtítulos [de izquierda a derecha]/[de derecha a izquierda]',
       },
       {
         keys: ['ctrl', 'z/y'],
-        clue: 'undo/redo',
+        clue: 'deshacer/rehacer',
       },
       {
         keys: ['ctrl', 's'],
-        clue: 'save subtitle',
+        clue: 'guardar subtitulos',
       },
     ],
 
     features: [
       {
         imageSrc: captionDrag,
-        details: `you can drag head/tail of the captions to extend/limit the timing of the caption. 
-        dragCaption.GIF                  you can also drag center of the caption to move caption forward/backward in time.`
+        details: `puede arrastrar el principio o el final de los subtítulos para ampliar o limitar el tiempo de los subtítulos. 
+        dragCaption.GIF también puede arrastrar el centro del título para moverlo hacia adelante o hacia atrás en el tiempo.`
       },
   
       {
         imageSrc: TCtrolImg,
-        details: `you can change timestamp manually by double clicking on it
-        changes will be applied after clicking out of the timestamp`
+        details: `Puedes cambiar la marca de tiempo manualmente haciendo doble clic en ella.
+        Los cambios se aplicarán después de hacer clic fuera de la marca de tiempo.`
       },
       {
         imageSrc: StickTimeImg,
-        details: "use stick time button to stick start/end of selected caption to the timeline cursor"
+        details: "use el botón de tiempo fijo para pegar el inicio/final del título seleccionado al cursor de la línea de tiempo"
       },
       {
         imageSrc: TextAlignImg,
-        details: "you can change text align according to the language you write in"
+        details: "Puedes cambiar la alineación del texto según el idioma en el que escribes."
       },
       {
         imageSrc: addNewCap2Last,
-        details: "if you add a new caption to the last 600ms of the last caption, the new caption will be inserted after last one"
+        details: "Si agrega un nuevo título a los últimos 600 ms del último título, el nuevo título se insertará después del último."
       },
       {
         imageSrc: resizeVideo,
-        details: "you can resize video by draging the thin line after video and before caption view"
+        details: "Puedes cambiar el tamaño del video arrastrando la línea delgada después del video y antes de la vista de subtítulos."
       }
     ]
   }
 
   render() {
     return (<>
-      <h2 className="page-title">Help</h2>
+      <h2 className="page-title">pagina de Ayuda</h2>
       <div className="wrapper">
 
-        <h3> <a href="#features">#features</a> </h3>
+        <h3> <a href="#features">características</a> </h3>
         <ul id="features">
           {this.state.features.map(f => <li>
             <img src={f.imageSrc} className="d-block" alt="" />
@@ -136,7 +136,7 @@ export default class Help extends React.Component<{}, State> {
           </li>)}
         </ul>
 
-        <h3> <a href="#shortcuts">#shortcuts</a> </h3>
+        <h3> <a href="#shortcuts">Atajos</a> </h3>
         <ul id="shortcuts">
           {this.state.shortcuts.map(sh => (
             <li className="shortcut d-flex justify-content-between">
