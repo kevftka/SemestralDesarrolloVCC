@@ -1,12 +1,13 @@
 import React from 'react'
 import './help.sass'
 
-import captionDrag from '../assets/captionDrag.gif'
-import TCtrolImg from '../assets/TimeControll.jpg'
-import StickTimeImg from '../assets/stickTime.png'
-import TextAlignImg from '../assets/textAlign.png'
-import addNewCap2Last from '../assets/addNewCaptionToEndOfLastOne.jpg'
-import resizeVideo from '../assets/resizeVideo.png'
+import captionDrag from '../assets/hacersub.png'
+import TCtrolImg from '../assets/controltiempo.png'
+import StickTimeImg from '../assets/ajustartiempo.png'
+import TextAlignImg from '../assets/alineartexto.png'
+import addNewCap2Last from '../assets/moversubtitulo.png'
+import resizeVideo from '../assets/cambiodetamaño.png'
+
 import NavsBar from '../components/NavsBar'
 
 type State = {
@@ -97,7 +98,7 @@ export default class Help extends React.Component<{}, State> {
       {
         imageSrc: captionDrag,
         details: `puede arrastrar el principio o el final de los subtítulos para ampliar o limitar el tiempo de los subtítulos. 
-        dragCaption.GIF también puede arrastrar el centro del título para moverlo hacia adelante o hacia atrás en el tiempo.`
+        también puede arrastrar el centro del subtítulo para moverlo hacia adelante o hacia atrás en el tiempo.`
       },
   
       {
@@ -111,11 +112,11 @@ export default class Help extends React.Component<{}, State> {
       },
       {
         imageSrc: TextAlignImg,
-        details: "Puedes cambiar la alineación del texto según el idioma en el que escribes."
+        details: "Puedes cambiar la alineación del texto. util para otros idiomas"
       },
       {
         imageSrc: addNewCap2Last,
-        details: "Si agrega un nuevo título a los últimos 600 ms del último título, el nuevo título se insertará después del último."
+        details: "Si agrega un nuevo subtítulo a los últimos 600 ms del último subtítulo, el nuevo subtítulo se insertará después del último."
       },
       {
         imageSrc: resizeVideo,
@@ -127,10 +128,10 @@ export default class Help extends React.Component<{}, State> {
   render() {
     return (<>
       <NavsBar />
-      <h2 className="page-title">pagina de Ayuda</h2>
-      <div className="wrapper">
+      <h2 className="page-title">Preguntas Frecuentes</h2>
+           <div className="wrapper">
 
-        <h3> <a href="#features">características</a> </h3>
+        <h3> <a href="#features">cualidades del Editor</a> </h3>
         <ul id="features">
           {this.state.features.map(f => <li>
             <img src={f.imageSrc} className="d-block" alt="" />

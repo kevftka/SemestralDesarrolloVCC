@@ -96,37 +96,37 @@ export default class Intro extends React.Component<{}, State> {
       <div className="wrapper">
 
         <div className="alert alert-secondary">
-          considere usar 
+          Considere usar 
           <Link to="/help"> la pagina de ayuda </Link>
           para aprender funciones y atajos de la aplicación
         </div>
 
         <div>
-          <span> archivo de video </span>
+          <span> Archivo de video </span>
           <FileInput
             onChange={f => this.handler(f, 'video')}
             filename={this.state.videoFname} />
         </div>
 
         <div className="alert alert-info">
-        puedes comprobar los formatos de vídeo compatibles
+        Puedes comprobar los formatos de vídeo compatibles
           <a href="https://es.wikipedia.org/wiki/HTML5_video" target="blank"> aqui </a>
         </div>
 
         <div className="mt-3">
-          <span> archivo de subtitulos: </span>
+          <span> Archivo de subtitulos: </span>
           <FileInput
             onChange={f => this.handler(f, 'subtitle')}
             filename={this.state.subtitleFname}
           />
         </div>
         <div className="alert alert-warning">
-        Si no selecciona un archivo de subtítulos, creamos uno nuevo.
+        Si no selecciona un archivo de subtítulos, creamos uno nuevo. Formatos aceptados:
         </div>
 
         <div className="center">
           <button className="btn btn-success font-weight-bold" onClick={this.checkValidation}>
-            a hacer subtitulos
+            Ir al Estudio
           </button>
         </div>
 
