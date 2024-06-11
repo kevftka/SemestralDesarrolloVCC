@@ -8,6 +8,7 @@ import { getQueryParams } from "../utils/browser"
 
 import "./intro.sass"
 import appbanner from '../assets/CCgen.png'
+import NavsBar from '../components/NavsBar'
 
 type State = {
   subtitleUrl: string
@@ -90,7 +91,7 @@ export default class Intro extends React.Component<{}, State> {
       return <Navigate to="/studio" />
 
     return (<>
-    <header className='header-title'><img className='content-header' src={appbanner} alt="" /></header>
+    <NavsBar  />
       <h2 className="page-title"></h2>
       <div className="wrapper">
 

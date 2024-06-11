@@ -19,7 +19,7 @@ export function areSameCaptions(a: Caption, b: Caption): boolean {
 }
 
 // save as .vtt format
-export function export2srt(caps: Caption[]): string {
+export function export2srt({ caps }: { caps: Caption[] }): string {
   return caps.map((c, i) =>
     `${i + 1}\n${second2timestamp(c.start, "complete")} --> ${second2timestamp(c.end, "complete")}\n${c.content}`)
     .join('\n\n')

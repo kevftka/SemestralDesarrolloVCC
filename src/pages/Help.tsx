@@ -7,6 +7,7 @@ import StickTimeImg from '../assets/ajustartiempo.png'
 import TextAlignImg from '../assets/alineartexto.png'
 import addNewCap2Last from '../assets/moversubtitulo.png'
 import resizeVideo from '../assets/cambiodetamaño.png'
+import NavsBar from '../components/NavsBar'
 
 type State = {
   shortcuts: {
@@ -125,6 +126,7 @@ export default class Help extends React.Component<{}, State> {
 
   render() {
     return (<>
+      <NavsBar />
       <h2 className="page-title">pagina de Ayuda</h2>
       <div className="wrapper">
 
