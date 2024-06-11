@@ -17,6 +17,7 @@ import WaveSurfer from 'wavesurfer.js'
 import fileDownload from 'js-file-download'
 
 import "./studio.sass"
+import NavsBar from '../components/NavsBar'
 
 
 function copyReplace<T>(arr: T[], i: number, repl: T): T[] {
@@ -371,7 +372,7 @@ export default class Studio extends React.Component<{}, {
 
   saveFile() {
     this.state.captions.sort(captionsCompare)
-    fileDownload(export2srt(this.state.captions), this.state.subFileName)
+    fileDownload(export2srt({ caps: this.state.captions }), this.state.subFileName)
   }
 
   // handleSeparatorStop(_: DraggableEvent, _: DraggableData) {
@@ -391,7 +392,8 @@ export default class Studio extends React.Component<{}, {
       selected_ci = this.state.selected_caption_i
 
     return (<>
-      <h2 className="page-title">Editor</h2>
+          <NavsBar />
+
       <div className="wrapper">
         <div className="video-wrapper">
           <VideoPlayer
