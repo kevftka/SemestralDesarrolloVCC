@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LOGO from "../assets/cclogo.png"
+import "./NavsBar.sass"
 
 
 const Navsbar = () => {
@@ -12,13 +13,13 @@ const Navsbar = () => {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/" >
-          <img alt="logo"  src={LOGO} />
+          <img className="logo"alt="logo"  src={LOGO} />
         </Link>
         
         
       </div>
       <div className={`navbar-menu ${isOpen ? "is-active" : ""}`}>
-        <div className="navbar-start">
+        <div className="navbar-menu">
           <Link to="/" className="navbar-item">
             Inicio
           </Link>
