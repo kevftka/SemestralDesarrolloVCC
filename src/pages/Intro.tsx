@@ -121,7 +121,7 @@ export default class Intro extends React.Component<{}, State> {
           />
         </div>
         <div className="alert alert-warning">
-        Si no selecciona un archivo de subtítulos, creamos uno nuevo. Formatos aceptados:
+        Si no selecciona un archivo de subtítulos, creamos uno nuevo. Formatos aceptados: .srt
         </div>
 
         <div className="center">
@@ -134,7 +134,7 @@ export default class Intro extends React.Component<{}, State> {
 
 
       <footer className="p-2 w-100 d-flex justify-content-center">
-        <a href="" target="blank"
+        <a href="https://github.com/eduardo-griffith-utp/generador-de-subtitulos-1LS231" target="blank"
           className="d-flex align-items-center">
           <span className="fab fa-github github-logo"></span>
           <span className="pb-1 mx-2"> enlace del proyecto en github </span>

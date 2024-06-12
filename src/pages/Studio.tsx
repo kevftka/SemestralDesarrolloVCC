@@ -59,7 +59,7 @@ export default class Studio extends React.Component<{}, {
       currentTime: 0,
       totalTime: 0,
 
-      subFileName: "subtitle.srt",
+      subFileName: "nuevo sub.srt",
 
       captions: [],
       selected_caption_i: null,

@@ -35,7 +35,7 @@ class FileInput extends React.Component<{
 	render() {
 		const
 			filename = this.props.filename,
-			placeHolder = filename ? `[${filename}] haga click para cambiar` : 'elija un archivo'
+			placeHolder = filename ? `[${filename}] Haga click para cambiar` : 'Elija un archivo'
 
 		return (
 			<div className="form-group file-input-wrapper">
