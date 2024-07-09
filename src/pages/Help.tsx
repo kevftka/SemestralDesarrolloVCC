@@ -3,10 +3,10 @@ import './help.sass'
 
 import captionDrag from '../assets/hacersub.png'
 import TCtrolImg from '../assets/controltiempo.png'
-import StickTimeImg from '../assets/ajustartiempo.png'
-import TextAlignImg from '../assets/alineartexto.png'
+import StickTimeImg from '../assets/ajustartiempo.jpg'
+import TextAlignImg from '../assets/alineartexto.jpg'
 import addNewCap2Last from '../assets/moversubtitulo.png'
-import resizeVideo from '../assets/cambiodetamaño.png'
+import resizeVideo from '../assets/cambiodetamaño.jpg'
 
 import NavsBar from '../components/NavsBar'
 
