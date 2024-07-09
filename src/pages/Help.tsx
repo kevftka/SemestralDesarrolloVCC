@@ -134,7 +134,7 @@ export default class Help extends React.Component<{}, State> {
         <h3> <a href="#features">Cualidades del Editor</a> </h3>
         <ul id="features">
           {this.state.features.map(f => <li>
-            <img src={f.imageSrc} className="d-block" alt="" />
+            <center><img src={f.imageSrc} className="d-block" alt=""/> </center>
             <span> {f.details} </span>
           </li>)}
         </ul>
