@@ -1,46 +1,50 @@
-import React, { SyntheticEvent } from 'react'
-import Draggable, { DraggableData, DraggableEvent } from 'react-draggable'
-import hotkeys from 'hotkeys-js'
-import { v4 as uuid } from "uuid"
+import React, { SyntheticEvent } from 'react';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
+import hotkeys from 'hotkeys-js';
+import { v4 as uuid } from "uuid";
 
-import appStates from "../utils/states"
-import { simpleSort } from "../utils/funcs"
-import { Caption, export2srt, captionsCompare } from "../utils/caption"
-import { SHOOT_TIME_MINOR, SHOOT_TIME_MAJOR, MAX_HISTORY, DEFAULT_SCALE } from "../utils/consts"
+import appStates from "../utils/states";
+import { simpleSort } from "../utils/funcs";
+import { Caption, captionsCompare } from "../utils/caption";
+import { SHOOT_TIME_MINOR, SHOOT_TIME_MAJOR, MAX_HISTORY, DEFAULT_SCALE } from "../utils/consts";
 
-import { VideoPlayer, Timeline, SubtitleTimeline, CaptionEditor, CaptionView } from "../components/video"
-import { CircleBtn, pushToast } from "../components/form"
+import { VideoPlayer, Timeline, SubtitleTimeline, CaptionEditor, CaptionView } from "../components/video";
+import { CircleBtn, pushToast } from "../components/form";
 
-import WaveSurfer from 'wavesurfer.js'
+import WaveSurfer from 'wavesurfer.js';
 
+import fileDownload from 'js-file-download';
 
-import fileDownload from 'js-file-download'
+import "./studio.sass";
+import NavsBar from '../components/NavsBar';
 
-import "./studio.sass"
-import NavsBar from '../components/NavsBar'
-
+// Importar funciones desde captionUtils.ts
+import { changeCaptionFont, changeCaptionColor, export2srt } from '../utils/captionUtils';
 
 function copyReplace<T>(arr: T[], i: number, repl: T): T[] {
   return Object.assign([], arr, { [i]: repl })
 }
 
+
 export default class Studio extends React.Component<{}, {
-  videoUrl: string
-  videoHeight: number
-  acc: number
+ videoUrl: string;
+  videoHeight: number;
+  acc: number;
   
-  subFileName: string
+  subFileName: string;
 
-  currentTime: number
-  totalTime: number
+  currentTime: number;
+  totalTime: number;
 
-  captions: Caption[]
-  selected_caption_i: number | null
+  captions: Caption[];
+  selected_caption_i: number | null;
   
-  history: Caption[][]
-  historyCursor: number
+  history: Caption[][];
+  historyCursor: number;
   
-  scale: number
+  scale: number;
+  captionFont: string;
+  captionColor: string;
 }> {
 
   VideoPlayerRef: React.RefObject<VideoPlayer>
@@ -68,7 +72,13 @@ export default class Studio extends React.Component<{}, {
       history: [],
       
       scale: DEFAULT_SCALE,
+
+      captionFont: 'Arial',
+      captionColor: '#ffffff',
     }
+    this.handleFontChange = this.handleFontChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
+    this.exportSRT = this.exportSRT.bind(this);
 
     this.subtitleTimelineRef = React.createRef()
     this.VideoPlayerRef = React.createRef()
@@ -95,6 +105,9 @@ export default class Studio extends React.Component<{}, {
     this.goToNextEnd = this.goToNextEnd.bind(this)
 
     this.saveFile = this.saveFile.bind(this)
+    this.handleFontChange = this.handleFontChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
+    this.exportSRT = this.exportSRT.bind(this);
   }
 
   // ------------- component API -----------------
@@ -197,7 +210,21 @@ export default class Studio extends React.Component<{}, {
       this.ws.zoom(this.state.scale)
     });
   }
+  handleFontChange(font: string) {
+    const updatedCaptions = changeCaptionFont(this.state.captions, this.state.selected_caption_i, font);
+    this.setState({ captions: updatedCaptions, captionFont: font });
+  }
 
+  handleColorChange(color: string) {
+    const updatedCaptions = changeCaptionColor(this.state.captions, this.state.selected_caption_i, color);
+    this.setState({ captions: updatedCaptions, captionColor: color });
+  }
+
+  exportSRT() {
+    const { captions, subFileName } = this.state;
+    const srtContent = export2srt(captions);
+    fileDownload(srtContent, subFileName || 'captions.srt');
+  }
   onTimeUpdate(nt: number) { // nt: new time
     const sci = this.state.selected_caption_i
     if (sci !== null) {
@@ -235,11 +262,6 @@ export default class Studio extends React.Component<{}, {
 
   // ----------------- functionalities --------------------
   // -- captions changes
-  changeCaptionFont(){
-    
-  }
-
-  changeCaptionColor(){}
 
 
   changeCaptionObject(index: number, newcap: Caption): Caption[] {
@@ -370,11 +392,16 @@ export default class Studio extends React.Component<{}, {
       this.VideoPlayerRef.current?.setTime(starts[starts.length - 1])
   }
 
+  // saveFile() {
+  //   this.state.captions.sort(captionsCompare)
+  //   fileDownload(captionUtils.export2srt({ caps: this.state.captions }), this.state.subFileName)
+    
+  // }
   saveFile() {
-    this.state.captions.sort(captionsCompare)
-    fileDownload(export2srt({ caps: this.state.captions }), this.state.subFileName)
+    const { captions, subFileName } = this.state;
+    const srtContent = export2srt(captions);
+    fileDownload(srtContent, subFileName || 'captions.srt');
   }
-
   // handleSeparatorStop(_: DraggableEvent, _: DraggableData) {
   handleSeparatorStop() {
     this.setState({
@@ -387,15 +414,50 @@ export default class Studio extends React.Component<{}, {
   }
 
   render() {
+
+    const { captionFont, captionColor } = this.state;
+
     const
       caps = this.state.captions,
       selected_ci = this.state.selected_caption_i
+
+
 
     return (<>
           <NavsBar />
 
       <div className="wrapper">
         <div className="video-wrapper">
+        <div>
+      {/* ...otros componentes y elementos de la interfaz */}
+      
+      <div>
+          <label>Font:</label>
+          <select
+            value={captionFont}
+            onChange={(e) => this.handleFontChange(e.target.value)}
+          >
+            <option value="Arial">Arial</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Times New Roman">Times New Roman</option>
+            {/* Agrega más opciones de fuentes según sea necesario */}
+          </select>
+        </div>
+      
+        <div>
+          <label>Color:</label>
+          <input
+            type="color"
+            value={captionColor}
+            onChange={(e) => this.handleColorChange(e.target.value)}
+          />
+        </div>
+
+       
+
+      
+      {/* ...el resto de tu componente renderizado */}
+    </div>
           <VideoPlayer
             ref={this.VideoPlayerRef}
             videoUrl={this.state.videoUrl}
@@ -428,16 +490,18 @@ export default class Studio extends React.Component<{}, {
         />
 
         <div className="d-flex justify-content-center action-button-group my-2">
-          <CircleBtn
+          {/* <CircleBtn
+          
           iconClassName='fas fa-broom'
           text='añadir color'
           onClick={this.changeCaptionColor}
+
             />
           <CircleBtn
           iconClassName='fas fa-font'
           text='añadir fuente '
           onClick={this.changeCaptionFont}
-            />
+            /> */}
 
           <CircleBtn
             iconClassName="fas fa-plus"
@@ -516,7 +580,7 @@ export default class Studio extends React.Component<{}, {
           value={this.state.subFileName} 
           onChange={ e => this.setState({subFileName: e.currentTarget.value})}  />
         <button className="btn btn-danger" onClick={this.saveFile}>
-          <strong> guardar como srt <span className="fas fa-file"></span>  </strong>
+          <strong> save as a file <span className="fas fa-file"></span>  </strong>
         </button>
       </div>
     </>)
