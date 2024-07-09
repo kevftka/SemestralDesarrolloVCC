@@ -454,9 +454,6 @@ export default class Studio extends React.Component<{}, {
         </div>
 
        
-
-      
-      {/* ...el resto de tu componente renderizado */}
     </div>
           <VideoPlayer
             ref={this.VideoPlayerRef}
