@@ -1,8 +1,8 @@
 {
-  "name": "subtitle-editor",
+  "name": "semestral-5",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://hamidb80.github.io/subtitle-editor/",
+  "homepage": "https://github.com/eduardo-griffith-utp/generador-de-subtitulos-1LS231",
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",

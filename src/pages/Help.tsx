@@ -97,8 +97,8 @@ export default class Help extends React.Component<{}, State> {
     features: [
       {
         imageSrc: captionDrag,
-        details: `puede arrastrar el principio o el final de los subtítulos para ampliar o limitar el tiempo de los subtítulos. 
-        también puede arrastrar el centro del subtítulo para moverlo hacia adelante o hacia atrás en el tiempo.`
+        details: `Arrastre el Borde de los subtítulos para ampliar o limitar el tiempo de los subtítulos. 
+        también puede arrastrar el centro del subtítulo para moverlo hacia adelante o hacia atrás en el tiempo del video.`
       },
   
       {
@@ -131,10 +131,10 @@ export default class Help extends React.Component<{}, State> {
       <h2 className="page-title">Preguntas Frecuentes</h2>
            <div className="wrapper">
 
-        <h3> <a href="#features">cualidades del Editor</a> </h3>
+        <h3> <a href="#features">Cualidades del Editor</a> </h3>
         <ul id="features">
           {this.state.features.map(f => <li>
-            <img src={f.imageSrc} className="d-block" alt="" />
+            <center><img src={f.imageSrc} className="d-block" alt=""/> </center>
             <span> {f.details} </span>
           </li>)}
         </ul>
