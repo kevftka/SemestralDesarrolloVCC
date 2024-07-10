@@ -76,8 +76,7 @@ export default class Studio extends React.Component<{}, {
       captionFont: 'Arial',
       captionColor: '#ffffff',
     }
-    this.handleFontChange = this.handleFontChange.bind(this);
-    this.handleColorChange = this.handleColorChange.bind(this);
+   
     this.exportSRT = this.exportSRT.bind(this);
 
     this.subtitleTimelineRef = React.createRef()
@@ -210,20 +209,19 @@ export default class Studio extends React.Component<{}, {
       this.ws.zoom(this.state.scale)
     });
   }
-  handleFontChange(font: string) {
-    const updatedCaptions = changeCaptionFont(this.state.captions, this.state.selected_caption_i, font);
-    this.setState({ captions: updatedCaptions, captionFont: font });
-  }
+  // handleFontChange(font: string) {
+  //   const updatedCaption = changeCaptionFont(this.state.caption, this.state.selected_caption_i, font);
+  //   this.setState({ caption: updatedCaption, captionFont: font });
+  // }
 
-  handleColorChange(color: string) {
-    const updatedCaptions = changeCaptionColor(this.state.captions, this.state.selected_caption_i, color);
-    this.setState({ captions: updatedCaptions, captionColor: color });
-  }
+  // handleColorChange(color: string) {
+  //   const updatedCaption = changeCaptionColor(this.state.caption, this.state.selected_caption_i, color);
+  //   this.setState({ caption: updatedCaption, captionColor: color });
+  // }
 
   exportSRT() {
-    const { captions, subFileName } = this.state;
-    const srtContent = export2srt(captions);
-    fileDownload(srtContent, subFileName || 'captions.srt');
+    const srtContent = export2srt(caption);
+    fileDownload(srtContent, subFileName || 'caption.srt');
   }
   onTimeUpdate(nt: number) { // nt: new time
     const sci = this.state.selected_caption_i
@@ -398,8 +396,8 @@ export default class Studio extends React.Component<{}, {
     
   // }
   saveFile() {
-    const { captions, subFileName } = this.state;
-    const srtContent = export2srt(captions);
+    const { caption, subFileName } = this.state;
+    const srtContent = export2srt(caption);
     fileDownload(srtContent, subFileName || 'captions.srt');
   }
   // handleSeparatorStop(_: DraggableEvent, _: DraggableData) {
@@ -577,7 +575,7 @@ export default class Studio extends React.Component<{}, {
           value={this.state.subFileName} 
           onChange={ e => this.setState({subFileName: e.currentTarget.value})}  />
         <button className="btn btn-danger" onClick={this.saveFile}>
-          <strong> save as a file <span className="fas fa-file"></span>  </strong>
+          <strong> Guardar Subtitulos <span className="fas fa-file"></span>  </strong>
         </button>
       </div>
     </>)
